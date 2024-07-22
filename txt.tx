@@ -1,0 +1,30 @@
+Recuerda realizar este proyecto después de haber consumido la sesión 15: API REST
+
+En este proyecto deberás demostrar tu aprendizaje consumido hasta la fecha en el apartado de Backend.
+
+Este, lo podéis hacer de la temática que prefiráis siempre y cuando se cumplan los requisitos mínimos.
+
+Los criterios de evaluación son MÍNIMOS, siempre os invitamos a dar un paso más.
+
+IMPORTANTE! Recuerda también entregar tu .env para que podamos corregirlo con mayor facilidad
+
+La base de datos tiene que tener una IP pública, la mítica de 0.0.0.0/0 recordad ponerla.
+
+Para el README.md con la documentación del proyecto, os dejamos por aquí un recurso que utilizamos mucho para facilitar su creación: https://dillinger.io/
+
+Esta herramienta os permitirá ver en directo cómo se renderizará vuestro README, además de enseñaros cómo se hacen tablas, listas, etc.
+
+EL REPOSITORIO DE GITHUB DEBE ESTAR PÚBLICO PARA PODER REALIZAR LA CORRECCIÓN.
+
+Servidor con express
+Conexión a una base de datos de Mongo Atlas mediante mongoose
+Creación de dos modelos
+Una semilla que suba datos a una de las colecciones
+Una relación entre colecciones, un array de datos relacionados
+CRUD completo de ambas colecciones
+README.md con la documentación del proyecto, indicando los endpoints y que hace cada uno
+Al actualizar una colección que tenga un array de datos relacionados, no queremos que estos datos se borren
+Evitaremos duplicados en el array relacionado
+
+barberatormov
+NI0e9qoJLHbaGP6t
