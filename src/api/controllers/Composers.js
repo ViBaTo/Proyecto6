@@ -4,7 +4,7 @@ const Composer = require('../models/Composers')
 
 const getComposers = async (req, res, next) => {
   try {
-    const allComposers = await Composer.find().populate('symphony') // Encentra todos los datos de dicha colección
+    const allComposers = await Composer.find().populate('symphonies') // Encentra todos los datos de dicha colección
     return res.status(200).json(allComposers)
   } catch (error) {
     return (
@@ -27,16 +27,31 @@ const postComposer = async (req, res, next) => {
   }
 }
 
-const updateComposer = async (req, res, next) => {
+const updateComposer = async (req, res) => {
   try {
     const { id } = req.params
+    const updateData = req.body
 
-    const updateComposer = await Composer.findByIdAndUpdate(id, req.body, {
-      new: true
-    })
-    if (!updateComposer) {
+    const composer = await Composer.findById(id)
+    if (!composer) {
       return res.status(404).json({ message: 'Compositor no encontrado' })
     }
+
+    // Combinación de sinfonías sin duplicados
+    if (updateData.symphonies) {
+      const symphonySet = new Set(composer.symphonies.map((s) => s.toString()))
+      updateData.symphonies.forEach((symphonyId) => symphonySet.add(symphonyId))
+      composer.symphonies = Array.from(symphonySet)
+    }
+
+    // Actualizar otros campos
+    Object.keys(updateData).forEach((key) => {
+      if (key !== 'symphonies') {
+        composer[key] = updateData[key]
+      }
+    })
+
+    const updatedComposer = await composer.save()
     return res.status(200).json(updatedComposer)
   } catch (error) {
     return res
@@ -66,7 +81,7 @@ const deleteComposer = async (req, res, next) => {
 const getComposerByCategory = async (req, res, next) => {
   try {
     const { category } = req.params
-    const composers = await Composer.find({ category })
+    const composers = await Composer.find({ category }).populate('symphonies')
     return res.status(200).json(composers)
   } catch (error) {
     return res.status(400).json('Error')

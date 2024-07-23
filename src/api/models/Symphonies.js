@@ -12,8 +12,8 @@ const symphonySchema = new mongoose.Schema(
     },
     composer: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Composer',
-      required: true
+      ref: 'composers',
+      required: false
     },
     duration: {
       type: Number,
@@ -30,5 +30,5 @@ const symphonySchema = new mongoose.Schema(
   }
 )
 
-const Symphony = mongoose.model('Symphony', symphonySchema)
+const Symphony = mongoose.model('symphonies', symphonySchema, 'symphonies')
 module.exports = Symphony

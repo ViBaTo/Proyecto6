@@ -26,13 +26,13 @@ const composerSchema = new mongoose.Schema(
     symphonies: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Symphony'
+        ref: 'symphonies'
       }
     ]
   },
   {
     timestamps: true,
-    collection: 'composer'
+    collection: 'composers'
   }
 )
 

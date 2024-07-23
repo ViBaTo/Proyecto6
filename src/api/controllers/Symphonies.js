@@ -3,7 +3,7 @@ const Symphony = require('../models/Symphonies')
 // Obtener todas las sinfonías
 const getSymphonies = async (req, res, next) => {
   try {
-    const allSymphonies = await Symphony.find().populate('composer')
+    const allSymphonies = await Symphony.find()
     return res.status(200).json(allSymphonies)
   } catch (error) {
     return res
@@ -26,7 +26,7 @@ const postSymphony = async (req, res, next) => {
 }
 
 // Actualizar una sinfonía
-const updateSymphony = async (req, res, next) => {
+const updateSymphony = async (req, res) => {
   try {
     const { id } = req.params
     const updatedSymphony = await Symphony.findByIdAndUpdate(id, req.body, {
@@ -48,9 +48,6 @@ const deleteSymphony = async (req, res, next) => {
   try {
     const { id } = req.params
     const symphonyDeleted = await Symphony.findByIdAndDelete(id)
-    if (!symphonyDeleted) {
-      return res.status(404).json({ message: 'Sinfonía no encontrada' })
-    }
     return res.status(200).json({
       message: 'Sinfonía eliminada',
       elemento: symphonyDeleted
